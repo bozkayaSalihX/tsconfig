@@ -82,7 +82,7 @@ class Select {
     let y = this.cursorLocs.y;
     readline.cursorTo(process.stdout, 0, y + 1);
     process.stdout.write(this.opts.options[y - 1]);
-    if (this.cursorLocs.y == 1) {
+    if (this.cursorLocs.y === 1) {
       // on the first option
       this.cursorLocs.y = this.opts.options.length;
     } else {
@@ -166,7 +166,7 @@ class Select {
         const file = files[idx];
         if (file.isFile()) {
           const type = file.name.split('.')[0];
-          if (type == answer) {
+          if (type === answer) {
             try {
               fs.unlinkSync(path.resolve(parentPath, 'tsconfig.json'));
               const data = fs.readFileSync(path.resolve(configDir, file.name), {
