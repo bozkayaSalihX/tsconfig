@@ -1,7 +1,7 @@
 import cp from 'child_process';
 import fs from 'node:fs';
 import path from 'node:path';
-import readline from 'readline';
+import readline from 'node:readline';
 
 type Color = 'yellow' | 'blue' | 'green' | 'cyan' | 'red' | 'magenta';
 interface Opts {
@@ -33,6 +33,8 @@ class Select {
     this.cursorLocs = { x: 0, y: 0 };
     this._color = opts.color;
     this.input = 0;
+
+    process.chdir(this.rootDir());
   }
 
   public start() {
@@ -179,7 +181,8 @@ class Select {
               );
               break;
             } catch (err) {
-              throw new Error(JSON.stringify(err));
+              console.log('error', err);
+              continue;
             }
           }
         }
